@@ -1,0 +1,15 @@
+body {
+    display: flex; /* Membuat body menjadi flex container */
+    justify-content: center; /* Memposisikan flex items (termasuk canvas) di tengah horizontal */
+    align-items: center; /* Memposisikan flex items (termasuk canvas) di tengah vertikal */
+    height: 100vh; /* Menetapkan tinggi body menjadi tinggi viewport */
+    margin: 0; /* Menghilangkan margin default */
+}
+
+
+#canvas {
+    border: 2px solid black; /* mengatur tebal dan warna garis pinggir */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* menambahkan efek bayangan */
+    border-radius: 10px; /* membuat sudut border menjadi melengkung */
+}
+
