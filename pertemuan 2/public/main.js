@@ -12,8 +12,8 @@ alert("Silahkan Klik OK");
 // canvas.height = 800; // ini ukuran tinggi dalam pixel
 
 
-const canvasWidth = 300;
-const canvasHeight = 150;
+const canvasWidth = 800;
+const canvasHeight = 800;
 
 // Set ukuran canvas
 canvas.width = canvasWidth;
@@ -24,6 +24,7 @@ canvas.height = canvasHeight;
 // bersihkan layer
 gl.clearColor(0, 0, 1, 1); // Updated alpha value to 1
 gl.clear(gl.COLOR_BUFFER_BIT);
+gl.viewport(0,0,canvas.width,canvas.height);
 
 // membuat data koordinat titik
 const points1 = [
