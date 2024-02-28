@@ -26,20 +26,23 @@ gl.clearColor(0, 0, 1, 1); // Updated alpha value to 1
 gl.clear(gl.COLOR_BUFFER_BIT);
 
 // membuat data koordinat titik
-const points = [
-  -0.3, 0.5,   // titik pertama
+const points1 = [
+  -0.10, 0.8,   // titik pertama
   0.4, -0.3,   // titik kedua
-  -0.5, -0.2   // titik ketiga
-  // -0.5, 0.5,
-  // 0.5, -0.5,
-  // 0.5, 0.5,
-  // -0.5, -0.5
+  -0.5, -0.9   // titik ketiga
 ];
 
-// Membuat buffer untuk data posisi titik
-const positionBuffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(points), gl.STATIC_DRAW);
+const points2 = [
+  0.1, 0.5,   // titik pertama
+  0.3, 0.8,   // titik kedua
+  0.5, 0.5    // titik ketiga
+];
+
+const points3 = [
+  -0.8, 0.1,   // titik pertama
+  0.5, 0.2,    // titik kedua
+  0.0, -0.7    // titik ketiga
+];
 
 // Membuat vertex shader
 const vertexShaderSource = `
@@ -81,7 +84,32 @@ const positionAttributeLocation = gl.getAttribLocation(
   "a_position"
 );
 gl.enableVertexAttribArray(positionAttributeLocation);
-gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+
 
 // Menggambar titik
+function createAndBindBuffer(data) {
+  const buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW);
+  return buffer;
+}
+
+const positionBuffer1 = createAndBindBuffer(points1);
+const positionBuffer2 = createAndBindBuffer(points2);
+const positionBuffer3 = createAndBindBuffer(points3);
+
+
+// Menggambar objek pertama dengan gl.LINE_LOOP
+gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer1);
+gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 gl.drawArrays(gl.LINE_LOOP, 0, 3);
+
+// Menggambar objek kedua dengan gl.LINES
+gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer2);
+gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+gl.drawArrays(gl.LINES, 0, 3);
+
+// Menggambar objek ketiga dengan gl.LINE_STRIP
+gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer3);
+gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+gl.drawArrays(gl.LINE_STRIP, 0, 3);
